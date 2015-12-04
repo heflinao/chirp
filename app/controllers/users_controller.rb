@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome, #{@user.username}!"
+      respond_to do |format|
+        flash[:success] = "Welcome, #{@user.username}!"
+        format.html { render "new" }
+      end
     else
-      flash[:danger] = "Welcome, #{@user.username}!"
       render "new"
     end
   end
@@ -16,6 +18,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:user).require(:username, :password, :password_confirmation)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end
