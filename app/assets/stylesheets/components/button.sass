@@ -1,2 +1,11 @@
 .btn.full-width
   width: 100%
+
+.btn.btn--purple
+  color: $white
+  background-color: $purple
+  border: $dark-purple 3px solid
+  @include transition(background-color 0.3s ease-in-out)
+  &:hover
+    background-color: darken($purple, 10%)
+    @include transition(background-color 0.3s ease-in-out)
