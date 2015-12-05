@@ -1,14 +1,41 @@
-New User
+<div class="row">
+  <div class="col col-xs-12 col-md-8 col-md-offset-2">
+    <h1> New Chirpster </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-xs-12 col-md-8 col-md-offset-2">
+    <%= form_for @user do |f| %>
+      <%= content_tag :div, class: "form-group #{@user.errors[:username].any? ? 'has-error' : ''}" do -%>
+        <%= f.label :username, class: "control-label" %>
+        <%= f.password_field :username, class: "form-control" %>
+        <% @user.errors[:username].each do |msg| %>
+          <span class="help-block">
+            <%= msg.humanize %>
+          </span>
+        <% end -%>
+      <% end -%>
 
-<%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+      <%= content_tag :div, class: "form-group #{@user.errors[:password].any? ? 'has-error' : ''}" do -%>
+        <%= f.label :password, class: "control-label" %>
+        <%= f.password_field :password, class: "form-control" %>
+        <% @user.errors[:password].each do |msg| %>
+          <span class="help-block">
+            <%= msg.humanize %>
+          </span>
+        <% end -%>
+      <% end -%>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-
-  <%= f.submit "Create" %>
-<% end %>
+      <%= content_tag :div, class: "form-group #{@user.errors[:password_confirmation].any? ? 'has-error' : ''}" do -%>
+        <%= f.label :password_confirmation, class: "control-label" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+        <% @user.errors[:password_confirmation].each do |msg| %>
+          <span class="help-block">
+            <%= msg.humanize %>
+          </span>
+        <% end -%>
+      <% end -%>
+      <%= f.submit "Sign Up", class: "btn btn-default full-width" %>
+    <% end %>
+  </div>
+</div>

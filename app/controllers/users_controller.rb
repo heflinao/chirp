@@ -11,6 +11,7 @@ class UsersController < ApplicationController
         format.html { render "new" }
       end
     else
+      flash[:danger] = "User could not be created."
       render "new"
     end
   end
