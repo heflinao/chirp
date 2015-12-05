@@ -1,1 +1,14 @@
-# test
+# Chirp
+
+## Getting Setup
+
+  Chirp uses ruby 2.2.2
+
+      bundle install
+      rails s
+
+## Running Tests
+
+  Tests are run using Rspec
+
+      bundle exec rspec
