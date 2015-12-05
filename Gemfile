@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'puma'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sass-globbing'
 
 group :development, :test do
   gem 'pry'
