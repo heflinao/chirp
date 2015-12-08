@@ -20,6 +20,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'factory_girl'
+  gem 'database_cleaner'
   gem 'selenium-webdriver'
 end
 
