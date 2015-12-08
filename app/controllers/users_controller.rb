@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       respond_to do |format|
         flash[:success] = "Welcome, #{@user.username}!"
+        session[:user_id] = @user.id
         format.html { render "new" }
       end
     else

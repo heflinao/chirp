@@ -1,9 +1,15 @@
 class SessionsController < ApplicationController
-  def create
-    user = User.find(username: params[:username])
+  def new
+  end
+
+  def authenticate
+    user = User.find_by(username: params[:username])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
+      redirect_to '/'
+      flash[:success] = "Welcome, #{user.username}!"
     else
+      flash[:danger] = "Incorrect username or password."
       redirect_to '/login'
     end
   end
