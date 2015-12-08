@@ -2,7 +2,7 @@ class NewUserPage
   include Capybara::DSL
 
   def visit_page
-    visit "/"
+    visit "/users/new"
     self
   end
 
