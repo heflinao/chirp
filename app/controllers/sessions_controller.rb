@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if current_user
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def authenticate
@@ -10,7 +13,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome, #{user.username}!"
     else
       flash[:danger] = "Incorrect username or password."
-      redirect_to '/login'
+      redirect_to login_path
     end
   end
 

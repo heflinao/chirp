@@ -7,4 +7,14 @@ class ApplicationController < ActionController::Base
     @current_user ||= session[:user_id] ? User.find(session[:user_id]) : nil
   end
   helper_method :current_user
+
+  protected 
+  def authorize_user
+    if current_user
+      return true
+    else
+      redirect_to login_path
+      return false
+    end
+  end
 end

@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  before_filter :authorize_user
+  
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet[:user_id] = current_user.id
