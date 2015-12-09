@@ -1,0 +1,17 @@
+<div class="col col-xs-12 col-sm-4 tweet-feed">
+  <% if @tweets.empty? %>
+    <h2>This Chirper hasn't chirpped yet!</h2>
+  <% else %>
+    <% @tweets.each do |t| %>
+      <%= content_tag :div, class: "tweet tweet-#{t.id} panel panel-default" do -%>
+        <div class="panel-body">
+          <%= t.body %>
+        </div>
+        <div class="panel-footer">
+          <span class="type--small type--bold"><%= t.user.username %></span>
+          <span class="type--small"><%= t.posted_at %></span>
+        </div>
+      <% end -%>
+    <% end %>
+  <% end %>
+</div>
