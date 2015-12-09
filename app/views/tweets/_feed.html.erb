@@ -1,6 +1,6 @@
 <div class="col col-xs-12 col-sm-4 tweet-feed">
   <% if @tweets.empty? %>
-    <h2>This Chirper hasn't chirpped yet!</h2>
+    <h2>This Chirper hasn't chirped yet!</h2>
   <% else %>
     <% @tweets.each do |t| %>
       <%= content_tag :div, class: "tweet tweet-#{t.id} panel panel-default" do -%>
