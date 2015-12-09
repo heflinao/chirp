@@ -39,4 +39,13 @@ describe "manage tweets", type: :feature, js: true do
       expect(page.all(:css, ".tweet-feed .tweet").count).to eq(1)
     end
   end
+
+  context "delete a tweet" do
+    it "displays a success message" do
+      tweet_feed_count = page.all(:css, ".tweet-feed .tweet").count
+      home_page.destroy_tweet(tweet.id)
+      expect(page).to have_content("Tweet has been deleted!")
+      expect(page.all(:css, ".tweet-feed .tweet").count).to eq(tweet_feed_count - 1)
+    end
+  end
 end

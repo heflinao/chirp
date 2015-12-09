@@ -5,6 +5,7 @@
     <% @tweets.each do |t| %>
       <%= content_tag :div, class: "tweet tweet-#{t.id} panel panel-default" do -%>
         <div class="panel-body">
+          <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove delete align-right"), tweet_path(t.id), method: :delete %>
           <%= t.body %>
         </div>
         <div class="panel-footer">
