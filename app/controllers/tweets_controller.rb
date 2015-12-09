@@ -6,7 +6,8 @@ class TweetsController < ApplicationController
       redirect_to user_path(current_user.id)
       flash[:success] = "Tweet saved!"
     else
-      render template: "users/show"
+      flash[:danger] = @tweet.errors.messages[:body][0]
+      redirect_to user_path(current_user.id)
     end
   end
 

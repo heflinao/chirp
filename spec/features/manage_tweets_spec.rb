@@ -26,7 +26,7 @@ describe "manage tweets", type: :feature, js: true do
     describe "with an invalid character count" do
       it "displays an error message" do
         home_page.create_tweet(over_length_tweet_body)
-        expect(page).to have_content("Is too long (maximum is 140 characters)")
+        expect(page).to have_content("is too long (maximum is 140 characters)")
       end
     end
   end
