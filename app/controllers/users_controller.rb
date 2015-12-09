@@ -17,6 +17,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @tweet = Tweet.new
+    @tweets = Tweet.where(user_id: params[:id])
+  end
+
   private
 
   def user_params

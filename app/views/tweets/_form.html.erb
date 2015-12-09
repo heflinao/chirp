@@ -1,0 +1,8 @@
+<div class="col col-xs-12 col-sm-4">
+  <%= form_for @tweet do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <%= f.submit "Create", class: "btn btn-default btn--purple full-width" %>
+  <% end %>
+</div>
