@@ -11,4 +11,16 @@ class HomePage
       find('.delete').click
     end
   end
+
+  def user_count
+    within(".user-list") do
+      find_all('.user').count
+    end
+  end
+
+  def has_user?(username)
+    within(".user-list") do
+      find('.user', text: username)
+    end
+  end
 end

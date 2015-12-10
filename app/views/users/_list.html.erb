@@ -1,0 +1,13 @@
+<div class="col col-xs-12 col-sm-4 user-list">
+  <% if @users.empty? %>
+    <h2>You're the only Chirper!</h2>
+  <% else %>
+    <% @users.each do |u| %>
+      <%= content_tag :div, class: "user user-#{u.id} panel panel-default" do -%>
+        <div class="panel-footer">
+          <span class="type--small type--bold"><%= u.username %></span>
+        </div>
+      <% end -%>
+    <% end %>
+  <% end %>
+</div>
