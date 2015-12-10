@@ -6,6 +6,11 @@
       <%= content_tag :div, class: "user user-#{u.id} panel panel-default" do -%>
         <div class="panel-footer">
           <span class="type--small type--bold"><%= u.username %></span>
+          <% if u.followers.include?(current_user) %>
+            <span class="glyphicon glyphicon-star" aria-hidden=true></span>
+          <% else %>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden=true></span>
+          <% end %>
         </div>
       <% end -%>
     <% end %>

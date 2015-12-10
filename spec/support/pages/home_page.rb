@@ -18,9 +18,25 @@ class HomePage
     end
   end
 
+  def followed_user_count
+    within(".user-list") do
+      find_all('.glyphicon.glyphicon-star').count
+    end
+  end
+
+  def user_list
+    find('.user-list')
+  end
+
   def has_user?(username)
     within(".user-list") do
       find('.user', text: username)
+    end
+  end
+
+  def toggle_follow(user_id)
+    within(".user-#{user_id}") do
+      find('.follow').click
     end
   end
 end
