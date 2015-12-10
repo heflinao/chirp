@@ -36,7 +36,7 @@ class HomePage
 
   def toggle_follow(user_id)
     within(".user-#{user_id}") do
-      find('.follow').click
+      find('.toggle-follow').click
     end
   end
 end
