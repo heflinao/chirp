@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   has_secure_password
   has_many :tweets, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 
   # actively follow another user
