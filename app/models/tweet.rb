@@ -9,4 +9,8 @@ class Tweet < ActiveRecord::Base
   def posted_at
     created_at.strftime("%m/%d/%Y")
   end
+
+  def favorited?(user)
+    Favorite.where(user: user, tweet: self).any?
+  end
 end

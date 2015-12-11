@@ -1,18 +1,17 @@
-<div class="col col-xs-12 col-sm-4 user-list">
-  <% if @users.empty? %>
-    <h2>You're the only Chirper!</h2>
-  <% else %>
-    <% @users.each do |u| %>
-      <%= content_tag :div, class: "user user-#{u.id} panel panel-default" do -%>
-        <div class="panel-footer">
-          <%= link_to u.username, user_path(u), class: "type--small type--bold" %>
-          <% if u.followers.include?(current_user) %>
-            <%= link_to "", unfollow_path(u), method: :unfollow, user: u, class: "glyphicon glyphicon-star toggle-follow" %>
-          <% else %>
-            <%= link_to "", follow_path(u), method: :follow, user: u, class: "glyphicon glyphicon-star-empty toggle-follow" %>
-          <% end %>
-        </div>
-      <% end -%>
-    <% end %>
+<h2>Users List</h2>
+<% if @users.empty? %>
+  <h4>You're the only Chirper!</h4>
+<% else %>
+  <% @users.each do |u| %>
+    <%= content_tag :div, class: "user user-#{u.id} panel panel-default" do -%>
+      <div class="panel-footer">
+        <%= link_to u.username, user_path(u), class: "type--small type--bold user-link" %>
+        <% if u.followers.include?(current_user) %>
+          <%= link_to "", unfollow_path(u), method: :unfollow, user: u, class: "glyphicon glyphicon-star toggle-follow" %>
+        <% else %>
+          <%= link_to "", follow_path(u), method: :follow, user: u, class: "glyphicon glyphicon-star-empty toggle-follow" %>
+        <% end %>
+      </div>
+    <% end -%>
   <% end %>
-</div>
+<% end %>

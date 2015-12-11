@@ -1,0 +1,17 @@
+<h2>Favorites List</h2>
+<% if @favorited_tweets.empty? %>
+  <h4>You don't have any favorited tweets yet!</h4>
+<% else %>
+  <% @favorited_tweets.each do |f| %>
+    <%= content_tag :div, class: "favorite favorite-#{f.id} panel panel-default" do -%>
+      <div class="panel-body">
+          <%= link_to "", unfavorite_path(f), method: :unfavorite, favorite: f.tweet.id, class: "glyphicon glyphicon-heart unfavorite-button" %>
+        <%= f.tweet.body %>
+      </div>
+      <div class="panel-footer">
+        <span class="type--small type--bold"><%= f.posted_by %></span>
+        <span class="type--small"><%= f.posted_time %></span>
+      </div>
+    <% end -%>
+  <% end %>
+<% end %>
