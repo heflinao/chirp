@@ -1,3 +1,5 @@
 <%= render 'tweets/form', tweet: @tweet %>
 <%= render 'tweets/feed', tweets: @tweets %>
-<%= render 'users/list' %>
+<% if current_user.id == params[:id].to_i %>
+  <%= render 'users/list' %>
+<% end %>

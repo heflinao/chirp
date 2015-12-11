@@ -3,6 +3,7 @@ require_relative '../support/pages/home_page'
 require_relative '../support/pages/login_page'
 require_relative '../support/factories/user'
 require_relative '../support/factories/follow'
+require_relative '../support/factories/tweet'
 
 describe "manage follows", type: :feature, js: true do
   let!(:login_page) { LoginPage.new }
@@ -14,22 +15,35 @@ describe "manage follows", type: :feature, js: true do
 
   let!(:follow) { FactoryGirl.create(:follow, { follower: current_user, followed: followed_user }) }
 
+  let!(:followed_user_tweet) { FactoryGirl.create(:tweet, { user: followed_user }) }
+  let!(:unfollowed_user_tweet) { FactoryGirl.create(:tweet, { user: unfollowed_user }) }
+
   before(:each) do
     login_page.visit_page
     login_page.log_in(current_user.username, "password10")
   end
 
   context "following a user" do
-    it "displays associated tweets" do
+    it "displays a sucess message" do
       home_page.toggle_follow(unfollowed_user.id)
       expect(page).to have_content("#{unfollowed_user.username} has been followed!")
+    end
+
+    it "displays associated tweets in feed" do
+      home_page.toggle_follow(unfollowed_user.id)
+      expect(page).to have_content(unfollowed_user_tweet.body)
     end
   end
 
   context "unfollow a user" do
-    it "removes tweets from feed" do
+    it "displays a sucess message" do
       home_page.toggle_follow(followed_user.id)
       expect(page).to have_content("#{followed_user.username} has been unfollowed!")
+    end
+
+    it "removes tweets from feed" do
+      home_page.toggle_follow(followed_user.id)
+      expect(page).to_not have_content(followed_user_tweet.body)
     end
   end
 end

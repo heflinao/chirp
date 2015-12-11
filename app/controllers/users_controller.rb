@@ -20,8 +20,19 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @users = User.where("id != ?", current_user.id)
+
     @tweet = Tweet.new
-    @tweets = Tweet.where(user_id: params[:id])
+    @tweets = get_tweets_for_following_users
+  end
+
+  def get_tweets_for_following_users
+    if current_user.id == params[:id].to_i
+      tweets = Tweet.where(user_id: current_user.id)
+      current_user.following.each { |u| tweets << u.tweets }
+      tweets.flatten
+    else
+      tweets = Tweet.where(user_id: params[:id])
+    end
   end
 
   private
