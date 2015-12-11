@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   post '/follow/:id', to: 'follows#follow', as: 'follow'
   post '/unfollow/:id', to: 'follows#unfollow', as: 'unfollow'
 
+  post '/favorite/:id', to: 'favorites#favorite', as: 'favorite'
+  post '/unfavorite/:id', to: 'favorites#unfavorite', as: 'unfavorite'
+
   resources :tweets, only: [:index, :create, :destroy]
 end

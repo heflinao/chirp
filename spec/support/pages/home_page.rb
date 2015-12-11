@@ -39,4 +39,22 @@ class HomePage
       find('.toggle-follow').click
     end
   end
+
+  def visit_user(user_id)
+    within(".user-#{user_id}") do
+      find('.user-link').click
+    end
+  end
+
+  def favorite_tweet(tweet_id)
+    within(".tweet-#{tweet_id}") do
+      find('.favorite-button').click
+    end
+  end
+
+  def unfavorite_tweet(tweet_id)
+    within(".favorite-#{tweet_id}") do
+      find('.unfavorite-button').click
+    end
+  end
 end

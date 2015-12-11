@@ -1,5 +1,47 @@
-<%= render 'tweets/form', tweet: @tweet %>
-<%= render 'tweets/feed', tweets: @tweets %>
-<% if current_user.id == params[:id].to_i %>
-  <%= render 'users/list' %>
-<% end %>
+<div class="row">
+  <div class="col col-xs-12 col-sm-3">
+    <div class="row">
+      <div class="col col-xs-12">
+        <h1>@<%= @user.username %></h1>
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+            <div class="col col-xs-12 col-sm-4">
+              <span>Followers:</span>
+              <h4><%= @user.followers.count%></h4>
+            </div>
+            <div class="col col-xs-12 col-sm-4">
+              <span>Following:</span>
+              <h4><%= @user.following.count%></h4>
+            </div>
+            <div class="col col-xs-12 col-sm-4">
+              <span>Tweets:</span>
+              <h4><%= @user.tweets.count%></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if current_user.id == params[:id].to_i %>
+      <div class="row">
+        <div class="col col-xs-12">
+          <%= render 'tweets/form', tweet: @tweet %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col col-xs-12 col-sm-9">
+    <% if current_user.id == params[:id].to_i %>
+      <div class="col col-xs-12 col-sm-4 tweet-feed">
+        <%= render 'favorites/list' %>
+      </div>
+      <% end %>
+      <div class="col col-xs-12 col-sm-4 tweet-feed">
+        <%= render 'tweets/feed', tweets: @tweets %>
+      </div>
+      <% if current_user.id == params[:id].to_i %>
+      <div class="col col-xs-12 col-sm-4 user-list">
+        <%= render 'users/list' %>
+      </div>
+    <% end %>
+  </div>
+</div>
