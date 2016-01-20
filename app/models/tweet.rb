@@ -13,4 +13,8 @@ class Tweet < ActiveRecord::Base
   def favorited?(user)
     Favorite.where(user: user, tweet: self).any?
   end
+
+  def favorite(user)
+    Favorite.find_by(user: user, tweet: self)
+  end
 end
