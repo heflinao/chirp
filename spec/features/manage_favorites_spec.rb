@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "manage favorites", type: :feature, js: true do
-  let!(:login_page) { LoginPage.new }
-  let!(:home_page) { HomePage.new }
+  let(:login_page) { LoginPage.new }
+  let(:home_page) { HomePage.new }
 
-  let!(:current_user) { FactoryGirl.create(:user) }
+  let(:current_user) { FactoryGirl.create(:user) }
   let!(:user) { FactoryGirl.create(:user) }
   let!(:favorited_tweet) { FactoryGirl.create(:tweet, { user: user, body: "Super sweet tweet!" }) }
   let!(:unfavorited_tweet) { FactoryGirl.create(:tweet, { user: user, body: "Awesome tweet!" }) }

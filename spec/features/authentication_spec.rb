@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "logging in", type: :feature, js: true do
-  let!(:login_page) { LoginPage.new }
-  let!(:user) { FactoryGirl.create(:user)}
+  let(:login_page) { LoginPage.new }
+  let(:user) { FactoryGirl.create(:user)}
 
   context "with valid credentials" do
     it "sets a current_user" do

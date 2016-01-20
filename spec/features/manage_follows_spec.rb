@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "manage follows", type: :feature, js: true do
-  let!(:login_page) { LoginPage.new }
-  let!(:home_page) { HomePage.new }
+  let(:login_page) { LoginPage.new }
+  let(:home_page) { HomePage.new }
 
-  let!(:current_user) { FactoryGirl.create(:user) }
+  let(:current_user) { FactoryGirl.create(:user) }
   let!(:followed_user) { FactoryGirl.create(:user) }
   let!(:unfollowed_user) { FactoryGirl.create(:user) }
 

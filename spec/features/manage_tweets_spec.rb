@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe "manage tweets", type: :feature, js: true do
-  let!(:login_page) { LoginPage.new }
-  let!(:home_page) { HomePage.new }
-  let!(:user) { FactoryGirl.create(:user)}
+  let(:login_page) { LoginPage.new }
+  let(:home_page) { HomePage.new }
+
+  let(:user) { FactoryGirl.create(:user)}
   let!(:tweet) { FactoryGirl.create(:tweet, { user_id: user.id }) }
-  let!(:tweet_body) { "Humid uc coffee emporium music hall city chili midpoint music festival fifty west cincinnati bengals historic architecture paris of america." }
-  let!(:over_length_tweet_body) { "Humid uc coffee emporium music hall city chili midpoint music festival fifty west cincinnati bengals historic architecture paris of america. Humid uc coffee emporium!" }
+  let(:tweet_body) { "Humid uc coffee emporium music hall city chili midpoint music festival fifty west cincinnati bengals historic architecture paris of america." }
+  let(:over_length_tweet_body) { "Humid uc coffee emporium music hall city chili midpoint music festival fifty west cincinnati bengals historic architecture paris of america. Humid uc coffee emporium!" }
 
   before(:each) do
     login_page.visit_page
