@@ -1,8 +1,8 @@
 <h2>Tweet List</h2>
-<% if @tweets.empty? %>
+<% if @tweet_feed.empty? %>
   <h4>This Chirper hasn't chirped yet!</h4>
 <% else %>
-  <% @tweets.each do |t| %>
+  <% @tweet_feed.each do |t| %>
     <%= content_tag :div, class: "tweet tweet-#{t.id} panel panel-default" do -%>
       <div class="panel-body">
         <% if t.user.id == current_user.id %>

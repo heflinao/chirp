@@ -28,4 +28,11 @@ class User < ActiveRecord::Base
   def get_following(user)
     Follow.find_by(follower_id: self.id, followed_id: user.id)
   end
+
+  def tweet_feed
+    tweet_feed = []
+    tweet_feed << tweets
+    following.each { |u| tweet_feed << u.tweets }
+    tweet_feed.flatten
+  end
 end
