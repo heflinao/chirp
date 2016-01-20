@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get "login" => "sessions#new", as: "login"
   post "authenticate" => "sessions#authenticate", as: "authenticate"
 
-  post '/follow/:id', to: 'follows#follow', as: 'follow'
-  post '/unfollow/:id', to: 'follows#unfollow', as: 'unfollow'
+  post '/follow/:user_id', to: 'follows#follow', as: 'follow'
+  post '/unfollow/:follow_id', to: 'follows#unfollow', as: 'unfollow'
 
   post '/favorite/:tweet_id', to: 'favorites#favorite', as: 'favorite'
   post '/unfavorite/:favorite_id', to: 'favorites#unfavorite', as: 'unfavorite'

@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   #   <Follow id: 1, followed_id: 15, follower_id: 16>
   #   user 16 has user 15 as a follower
   #   user 15 follows user 16
+
+  def get_following(user)
+    Follow.find_by(follower_id: self.id, followed_id: user.id)
+  end
 end
