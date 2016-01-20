@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) { FactoryGirl.create(:user, username: "user", password: "password") }
-  let(:follower) { FactoryGirl.create(:user, username: "follower", password: "password") }
-  let(:followed) { FactoryGirl.create(:user, username: "followed", password: "password") }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:follower) { FactoryGirl.create(:user) }
+  let(:followed) { FactoryGirl.create(:user) }
 
   before(:each) do
     FactoryGirl.create(:follow, followed: user, follower: follower)
