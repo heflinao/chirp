@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative '../support/pages/new_user_page'
 
 describe "creating a new user", type: :feature do
   let(:new_user_page) { NewUserPage.new }

@@ -1,6 +1,4 @@
 require 'spec_helper'
-require_relative '../support/pages/login_page'
-require_relative '../support/factories/user'
 
 describe "logging in", type: :feature, js: true do
   let!(:login_page) { LoginPage.new }

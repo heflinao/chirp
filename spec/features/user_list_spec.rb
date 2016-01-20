@@ -1,8 +1,4 @@
 require 'spec_helper'
-require_relative '../support/pages/home_page'
-require_relative '../support/pages/login_page'
-require_relative '../support/factories/user'
-require_relative '../support/factories/follow'
 
 describe "user list", type: :feature, js: true do
   let!(:login_page) { LoginPage.new }
