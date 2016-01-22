@@ -16,22 +16,20 @@ describe "creating a new user", type: :feature do
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("", "password", "password")
-      expect(page).to have_content("User could not be created.")
-      expect(page).to have_content("Can't be blank")
+      expect(page).to have_content("username can't be blank")
       expect(current_path).to eq("/users")
     end
   end
 
   context "with duplicate username" do
     before(:each) do
-      FactoryGirl.create(:user, username: "existing_user", password: "password")
+      FactoryGirl.create(:user, username: "existing_user", password: "password", password_confirmation: "password")
     end
-    
+
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("existing_user", "password", "password")
-      expect(page).to have_content("User could not be created.")
-      expect(page).to have_content("Has already been taken")
+      expect(page).to have_content("username has already been taken")
       expect(current_path).to eq("/users")
     end
   end
@@ -40,8 +38,8 @@ describe "creating a new user", type: :feature do
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("bob", "password", "")
-      expect(page).to have_content("User could not be created.")
-      expect(page).to have_content("Doesn't match password")
+      expect(page).to have_content("password_confirmation can't be blank")
+      expect(page).to have_content("doesn't match Password")
       expect(current_path).to eq("/users")
     end
   end

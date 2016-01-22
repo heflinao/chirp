@@ -6,13 +6,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    @user = User.create(user_params)
+    if @user.persisted?
       flash[:success] = "Welcome, #{@user.username}!"
       session[:user_id] = @user.id
       redirect_to user_path(current_user.id)
     else
-      flash[:danger] = "User could not be created."
+      flash[:danger] = @user.errors.messages
       render "new"
     end
   end

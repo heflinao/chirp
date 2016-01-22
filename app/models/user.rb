@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   require 'bcrypt'
   validates :username, presence: true, uniqueness: true
+  validates :password_confirmation, presence: true
   has_secure_password
   has_many :tweets, dependent: :destroy
   has_many :favorites, dependent: :destroy
