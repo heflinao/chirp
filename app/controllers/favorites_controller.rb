@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     if favorite.save
       flash[:success] = "Tweet has been favorited!"
     else
-      flash[:danger] = favorite.errors.messages
+      flash[:danger] = favorite.errors.full_messages.to_sentence
     end
     redirect_to user_path(current_user.id)
   end

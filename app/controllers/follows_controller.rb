@@ -6,7 +6,7 @@ class FollowsController < ApplicationController
     if follow.save
       flash[:success] = "#{follow.followed.username} has been followed!"
     else
-      flash[:danger] = follow.errors.messages
+      flash[:danger] = follow.errors.full_messages.to_sentence
     end
     redirect_to user_path(current_user.id)
   end

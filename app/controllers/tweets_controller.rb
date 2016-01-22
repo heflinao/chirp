@@ -8,7 +8,7 @@ class TweetsController < ApplicationController
       redirect_to user_path(current_user.id)
       flash[:success] = "Tweet saved!"
     else
-      flash[:danger] = tweet.errors.messages
+      flash[:danger] = tweet.errors.full_messages.to_sentence
       redirect_to user_path(current_user.id)
     end
   end
