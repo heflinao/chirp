@@ -24,14 +24,17 @@ class UsersController < ApplicationController
     @tweet = Tweet.new
     @favorites = @user.favorites
 
-    if current_user.id == params[:id].to_i
+    if my_page?
       @tweet_feed = @user.tweet_feed
     else
       @tweet_feed = @user.tweets
     end
   end
 
-
+  def my_page?
+    current_user.id == params[:id].to_i
+  end
+  helper_method :my_page?
 
   private
 
