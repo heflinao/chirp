@@ -18,6 +18,7 @@ describe "user list", type: :feature, js: true do
   it "displays all users except current user" do
     user_count = User.all.count - 1
     expect(home_page.user_count).to eq(user_count)
+
     expect(home_page).to have_user(followed_user.username)
     expect(home_page).to have_user(unfollowed_user.username)
   end

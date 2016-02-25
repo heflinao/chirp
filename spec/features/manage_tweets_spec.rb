@@ -18,31 +18,32 @@ describe "manage tweets", type: :feature, js: true do
     describe "with valid character count" do
       it "displays a new tweet" do
         home_page.create_tweet(tweet_body)
-        expect(page).to have_content("Tweet saved!")
+        expect(home_page.to_have_success)
       end
     end
 
     describe "with an invalid character count" do
       it "displays an error message" do
         home_page.create_tweet(over_length_tweet_body)
-        expect(page).to have_content("is too long (maximum is 140 characters)")
+        expect(home_page.to_have_error)
       end
     end
   end
 
   context "viewing tweet feed" do
     it "displays tweets from current_user and followers" do
-      expect(page).to have_css(".tweet-feed")
-      expect(page.all(:css, ".tweet-feed .tweet").count).to eq(1)
+      expect(home_page.to_have_tweet_feed)
+      expect(home_page.tweet_count).to eq(1)
     end
   end
 
   context "delete a tweet" do
     it "displays a success message" do
-      tweet_feed_count = page.all(:css, ".tweet-feed .tweet").count
+      tweet_feed_count = home_page.tweet_count
       home_page.destroy_tweet(tweet.id)
-      expect(page).to have_content("Tweet has been deleted!")
-      expect(page.all(:css, ".tweet-feed .tweet").count).to eq(tweet_feed_count - 1)
+
+      expect(home_page.to_have_success)
+      expect(home_page.tweet_count).to eq(tweet_feed_count - 1)
     end
   end
 end

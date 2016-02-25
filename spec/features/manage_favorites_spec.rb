@@ -19,16 +19,18 @@ describe "manage favorites", type: :feature, js: true do
     it "displays a sucess message and displays favorited tweets in favorited feed" do
       home_page.visit_user(user.id)
       home_page.favorite_tweet(unfavorited_tweet.id)
-      expect(page).to have_content("Tweet has been favorited!")
-      expect(page).to have_content(unfavorited_tweet.body)
+
+      expect(home_page.to_have_success)
+      expect(home_page.favorite_feed).to have_content(unfavorited_tweet.body)
     end
   end
 
   context "unfavoriting a tweet" do
     it "displays a sucess message and removes unfavorited tweets in favorited feed" do
       home_page.unfavorite_tweet(favorited_tweet.id)
-      expect(page).to have_content("Tweet has been unfavorited!")
-      expect(page).to_not have_content(favorited_tweet.body)
+
+      expect(home_page.to_have_success)
+      expect(home_page.favorite_feed).to_not have_content(favorited_tweet.body)
     end
   end
 end

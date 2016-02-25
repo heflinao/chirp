@@ -57,4 +57,31 @@ class HomePage
       find('.unfavorite-button').click
     end
   end
+
+  def to_have_tweet_feed
+    find(".tweet-feed")
+  end
+
+  def favorite_feed
+    find('.favorites-feed')
+  end
+
+  def tweet_count
+    tweets = within(".tweet-feed") do
+      find_all(".tweet")
+    end
+    tweets.count
+  end
+
+  def to_have_success
+    page.find('#flash_success')
+  end
+
+  def to_have_error
+    page.find('.alert.alert-danger')
+  end
+
+  def to_have_error_on(attribute)
+    page.find(".field_with_errors #tweet_#{attribute}")
+  end
 end

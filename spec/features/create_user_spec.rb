@@ -16,7 +16,8 @@ describe "creating a new user", type: :feature do
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("", "password", "password")
-      expect(page).to have_content("username can't be blank")
+
+      expect(new_user_page.to_have_error_on(:username))
       expect(current_path).to eq("/users")
     end
   end
@@ -29,7 +30,8 @@ describe "creating a new user", type: :feature do
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("existing_user", "password", "password")
-      expect(page).to have_content("username has already been taken")
+
+      expect(new_user_page.to_have_error_on(:username))
       expect(current_path).to eq("/users")
     end
   end
@@ -38,8 +40,8 @@ describe "creating a new user", type: :feature do
     it "returns error messages", js: true do
       new_user_page.visit_page
       new_user_page.create_user("bob", "password", "")
-      expect(page).to have_content("password_confirmation can't be blank")
-      expect(page).to have_content("doesn't match Password")
+
+      expect(new_user_page.to_have_error_on(:password_confirmation))
       expect(current_path).to eq("/users")
     end
   end

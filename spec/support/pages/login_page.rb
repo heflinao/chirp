@@ -15,4 +15,12 @@ class LoginPage
   def logout
     find_link('Log Out').click
   end
+
+  def to_have_error
+    page.find('.alert.alert-danger')
+  end
+
+  def to_have_success
+    page.find('#flash_success')
+  end
 end

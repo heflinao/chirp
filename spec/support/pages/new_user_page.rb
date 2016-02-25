@@ -12,4 +12,8 @@ class NewUserPage
     fill_in "user_password_confirmation", with: password_confirm
     find('input[type="submit"]').click
   end
+
+  def to_have_error_on(attribute)
+    page.find(".field_with_errors #user_#{attribute}")
+  end
 end

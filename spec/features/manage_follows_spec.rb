@@ -21,24 +21,24 @@ describe "manage follows", type: :feature, js: true do
   context "following a user" do
     it "displays a sucess message" do
       home_page.toggle_follow(unfollowed_user.id)
-      expect(page).to have_content("#{unfollowed_user.username} has been followed!")
+      expect(home_page.to_have_success)
     end
 
     it "displays associated tweets in feed" do
       home_page.toggle_follow(unfollowed_user.id)
-      expect(page).to have_content(unfollowed_user_tweet.body)
+      expect(home_page).to have_content(unfollowed_user_tweet.body)
     end
   end
 
   context "unfollow a user" do
     it "displays a sucess message" do
       home_page.toggle_follow(followed_user.id)
-      expect(page).to have_content("#{followed_user.username} has been unfollowed!")
+      expect(home_page.to_have_success)
     end
 
     it "removes tweets from feed" do
       home_page.toggle_follow(followed_user.id)
-      expect(page).to_not have_content(followed_user_tweet.body)
+      expect(home_page).to_not have_content(followed_user_tweet.body)
     end
   end
 end
