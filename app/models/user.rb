@@ -36,4 +36,12 @@ class User < ActiveRecord::Base
     following.each { |u| tweet_feed << u.tweets }
     tweet_feed.flatten
   end
+
+  def self.search(username)
+    where(username: username)
+  end
+
+  def self.all_but(user)
+    where("id != ?", user.id)
+  end
 end

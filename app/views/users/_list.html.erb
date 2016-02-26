@@ -1,6 +1,6 @@
 <h2>Users List</h2>
 <% if @users.empty? %>
-  <h4>You're the only Chirper!</h4>
+  <h4 class="no_user_message">No Users With That Username!</h4>
 <% else %>
   <% @users.each do |u| %>
     <%= content_tag :div, class: "user user-#{u.id} panel panel-default" do -%>

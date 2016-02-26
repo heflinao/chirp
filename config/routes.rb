@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users
   resources :tweets, only: [:index, :create, :destroy]
 
+  # post "" => "sessions#authenticate", as: "authenticate"
+
   get "logout" => "sessions#destroy", as: "logout"
   get "login" => "sessions#new", as: "login"
   post "authenticate" => "sessions#authenticate", as: "authenticate"

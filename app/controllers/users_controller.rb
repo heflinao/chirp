@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.where("id != ?", current_user.id)
+    @searched_user = params[:searched_user]
+    @users = @searched_user ? User.search(@searched_user) : User.all_but(current_user)
 
     @tweet = Tweet.new
     @favorites = @user.favorites
