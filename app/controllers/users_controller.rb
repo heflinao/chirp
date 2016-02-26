@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.search(params[:searched_user])
+    @searched_user = params[:searched_user]
+    @users = User.search(@searched_user)
 
     @tweet = Tweet.new
     @favorites = @user.favorites
