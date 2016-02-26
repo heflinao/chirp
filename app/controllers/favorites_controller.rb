@@ -1,9 +1,6 @@
 class FavoritesController < ApplicationController
-  def favorite
-    tweet = Tweet.find(params[:tweet_id])
-    favorite = Favorite.new(user: current_user, tweet: tweet)
-
-    if favorite.save
+  def create
+    if favorite.update_attributes(tweet: tweet, user: current_user)
       flash[:success] = "Tweet has been favorited!"
     else
       flash[:danger] = favorite.errors.full_messages.to_sentence
@@ -11,15 +8,22 @@ class FavoritesController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
-  def unfavorite
-    fav = Favorite.find(params[:favorite_id])
-    fav.destroy
-
-    if fav.destroyed?
+  def destroy
+    if favorite.destroy
       flash[:success] = "Tweet has been unfavorited!"
     else
       flash[:danger] = favorite.errors.messages
     end
     redirect_to user_path(current_user.id)
+  end
+
+  private
+
+  def favorite
+    @favorite ||= params[:id] ? Favorite.find(params[:id]) : Favorite.new
+  end
+
+  def tweet
+    @tweet ||= Tweet.find(params[:tweet_id])
   end
 end

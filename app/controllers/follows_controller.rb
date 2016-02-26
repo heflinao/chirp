@@ -1,9 +1,6 @@
 class FollowsController < ApplicationController
-  def follow
-    followed_user = User.find(params[:user_id])
-    follow = Follow.new(follower: current_user, followed: followed_user)
-
-    if follow.save
+  def create
+    if follow.update_attributes(follower: current_user, followed: followed_user)
       flash[:success] = "#{follow.followed.username} has been followed!"
     else
       flash[:danger] = follow.errors.full_messages.to_sentence
@@ -11,15 +8,26 @@ class FollowsController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
-  def unfollow
-    follow = Follow.find(params[:follow_id])
-    unfollowed_user = User.find(follow.followed_id)
-    follow.destroy
-    if follow.destroyed?
+  def destroy
+    if follow.destroy
       flash[:success] = "#{unfollowed_user.username} has been unfollowed!"
     else
       flash[:danger] = follow.errors.messages
     end
     redirect_to user_path(current_user.id)
+  end
+
+  private
+
+  def follow
+    @favorite ||= params[:id] ? Follow.find(params[:id]) : Follow.new
+  end
+
+  def followed_user
+    User.find(params[:user_id])
+  end
+
+  def unfollowed_user
+    User.find(follow.followed_id)
   end
 end
