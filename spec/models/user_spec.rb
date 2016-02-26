@@ -15,6 +15,14 @@ describe User do
     end
   end
 
+  describe ".search" do
+    let!(:searched_user) { FactoryGirl.create(:user) }
+
+    it "returns matching users" do
+      expect(User.search(searched_user.username)).to include(searched_user)
+    end
+  end
+
   context "following" do
     before(:each) do
       FactoryGirl.create(:follow, followed: user, follower: follower)
@@ -34,3 +42,4 @@ describe User do
     end
   end
 end
+

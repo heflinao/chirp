@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.where("id != ?", current_user.id)
+    @users = User.search(params[:searched_user])
 
     @tweet = Tweet.new
     @favorites = @user.favorites

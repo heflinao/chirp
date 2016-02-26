@@ -84,4 +84,13 @@ class HomePage
   def to_have_error_on(attribute)
     page.find(".field_with_errors #tweet_#{attribute}")
   end
+
+  def search_for_user(username)
+    fill_in "search_user", with: username
+    find('button.search').click
+  end
+
+  def to_have_no_user_message
+    find('.no_user_message')
+  end
 end
