@@ -9,9 +9,9 @@
           <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove delete align-right"), tweet_path(t.id), method: :delete %>
         <% end %>
         <% if t.favorited?(current_user) %>
-          <%= link_to "", unfavorite_path(t.favorite(current_user)), method: :unfavorite, class: "glyphicon glyphicon-heart unfavorite-button" %>
+          <%= link_to "", unfavorite_path(t.favorite(current_user)), method: :delete, class: "glyphicon glyphicon-heart unfavorite-button" %>
         <% else %>
-          <%= link_to "", favorite_path(t), method: :favorite, class: "glyphicon glyphicon-heart favorite-button" %>
+          <%= link_to "", favorite_path(t), method: :post, class: "glyphicon glyphicon-heart favorite-button" %>
         <% end %>
         <%= t.body %>
       </div>

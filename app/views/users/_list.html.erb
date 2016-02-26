@@ -7,9 +7,9 @@
       <div class="panel-footer">
         <%= link_to u.username, user_path(u), class: "type--small type--bold user-link" %>
         <% if u.followers.include?(current_user) %>
-          <%= link_to "", unfollow_path(current_user.get_following(u)), method: :unfollow, class: "glyphicon glyphicon-star toggle-follow" %>
+          <%= link_to "", unfollow_path(current_user.get_following(u)), method: :delete, class: "glyphicon glyphicon-star toggle-follow" %>
         <% else %>
-          <%= link_to "", follow_path(u), method: :follow, class: "glyphicon glyphicon-star-empty toggle-follow" %>
+          <%= link_to "", follow_path(u), method: :post, class: "glyphicon glyphicon-star-empty toggle-follow" %>
         <% end %>
       </div>
     <% end -%>
