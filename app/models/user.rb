@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
   def self.search(username)
     where(username: username)
   end
+
+  def self.all_but(user)
+    where("id != ?", user.id)
+  end
 end

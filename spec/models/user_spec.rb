@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user) }
   let(:follower) { FactoryGirl.create(:user) }
   let(:followed) { FactoryGirl.create(:user) }
 
@@ -20,6 +20,16 @@ describe User do
 
     it "returns matching users" do
       expect(User.search(searched_user.username)).to include(searched_user)
+    end
+  end
+
+  describe ".all_but" do
+    it "returns all users except specified user" do
+      users = User.all_but(user)
+      other_user = FactoryGirl.create(:user)
+
+      expect(users).to_not include(user)
+      expect(users).to include(other_user)
     end
   end
 
